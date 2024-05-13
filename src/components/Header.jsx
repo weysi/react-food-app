@@ -1,12 +1,15 @@
+import logoImg from "../assets/logo.jpg";
+import Button from "./UI/Button";
+
 export default function Header() {
   return (
-    <header>
-      <div>
-        <img />
-        <h1></h1>
+    <header id="main-header">
+      <div id="title">
+        <img src={logoImg} alt="A restraunt" />
+        <h1> React Food</h1>
       </div>
       <nav>
-        <button>Cart (0)</button>
+        <Button textOnly>Cart (0)</Button>
       </nav>
     </header>
   );
