@@ -9,7 +9,7 @@ const CartContext = createContext({
 const cartReducer = (state, action) => {
 	if (action.type === "ADD_ITEM") {
 		const existingCarItemIndex = state.items.findIndex(
-			(item) => item.id === action.item.id,
+			(item) => item.id === action.item.id
 		);
 
 		const updatedItems = [...state.items];
@@ -28,16 +28,18 @@ const cartReducer = (state, action) => {
 		return { ...state, items: updatedItems };
 	}
 	if (action.type === "REMOVE_ITEM") {
-		//immutable way
+		//findIndex  edited
+		const existingCartItemIndex = state.items.findIndex(
+			(item) => item.id === action.id
+		);
+		console.log(existingCartItemIndex);
 
-		const existingCartItemIndex = state.items.findIndex((item) => {
-			item.id == action.id;
-		});
-
+		if (existingCartItemIndex === -1) {
+			return state;
+		}
 		const existingCartItem = state.items[existingCartItemIndex];
 
 		const updatedItems = [...state.items];
-		debugger;
 
 		if (existingCartItem.quantity === 1) {
 			updatedItems.splice(existingCartItemIndex, 1);
@@ -46,9 +48,11 @@ const cartReducer = (state, action) => {
 				...existingCartItem,
 				quantity: existingCartItem.quantity - 1,
 			};
+
 			updatedItems[existingCartItemIndex] = updateItem;
 		}
-		return { ...state, updatedItems };
+		//explicit data 05.24
+		return { ...state, items: updatedItems };
 	}
 	return state;
 };

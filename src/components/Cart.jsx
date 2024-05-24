@@ -3,7 +3,7 @@ import { currencyFormatter } from "../util/formatting";
 import Modal from "./UI/Modal";
 import Button from "./UI/Button.jsx";
 
-import Cartitem from "./CartItem.jsx";
+import CartItem from "./CartItem.jsx";
 import CartContext from "../components/store/CartContext.jsx";
 import UserProgressContext from "./store/UserProgressContext.jsx";
 
@@ -34,15 +34,13 @@ export default function Cart() {
 			<ul>
 				{cartCtx.items &&
 					cartCtx.items.map((item) => (
-						<Cartitem
+						<CartItem
 							key={item.id}
 							name={item.name}
 							price={item.price}
 							quantity={item.quantity}
 							onIncrease={() => cartCtx.addItem(item)}
-							onDecrease={() => {
-								cartCtx.removeItem(item.id);
-							}}
+							onDecrease={() => cartCtx.removeItem(item.id)}
 						/>
 					))}
 			</ul>

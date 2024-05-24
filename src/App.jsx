@@ -2,21 +2,21 @@ import { CartContextProvider } from "./components/store/CartContext.jsx";
 import { UserProggressContextProvider } from "./components/store/UserProgressContext.jsx";
 
 import "./App.css";
-import Header from "./components/Header";
-import Meals from "./components/Meals";
-import Cart from "./components/Cart";
+import Header from "./components/Header.jsx";
+import Meals from "./components/Meals.jsx";
+import Cart from "./components/Cart.jsx";
 import Checkout from "./components/Checkout.jsx";
 
 function App() {
 	return (
-		<UserProggressContextProvider>
-			<CartContextProvider>
+		<CartContextProvider>
+			<UserProggressContextProvider>
 				<Header />
 				<Meals />
 				<Cart />
 				<Checkout />
-			</CartContextProvider>
-		</UserProggressContextProvider>
+			</UserProggressContextProvider>
+		</CartContextProvider>
 	);
 }
 
