@@ -31,13 +31,13 @@ export default function useHttp(url, config, initialData) {
 			console.log("data:", data);
 			setIsLoading(true);
 			try {
-				const resData = await sendHttpRequest(url, {
-					...config,
-					body: data,
-				});
+                               const resData = await sendHttpRequest(url, {
+                                       ...(config || {}),
+                                       body: data,
+                               });
 				setData(resData);
-			} catch (err) {
-				setError(error.message || "Something went wrong!");
+                        } catch (err) {
+                                setError(err.message || "Something went wrong!");
 			}
 			setIsLoading(false);
 		},
